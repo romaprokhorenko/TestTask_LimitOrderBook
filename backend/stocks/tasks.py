@@ -11,8 +11,9 @@ def search_active_deals():
 
     for buyer in buyers:
         for seller in sellers:
-            if buyer.stock_name == seller.stock_name and buyer.user != seller.user:
+            if buyer.stock_name == seller.stock_name and buyer.user != seller.user and buyer.price >= seller.price:
                 min_quantity = min(buyer.quantity, seller.quantity)
+                order_price = min_quantity * buyer.price
 
                 if buyer.quantity == min_quantity:
                     buyer.is_active = False
@@ -34,7 +35,7 @@ def search_active_deals():
                     stock_name=buyer.stock_name,
                     buyer=buyer.user,
                     seller=seller.user,
-                    price=buyer.price,
+                    price=order_price,
                     quantity=min_quantity
                 ).save()
                 buyer_inventory.save()

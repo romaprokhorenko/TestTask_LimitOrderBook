@@ -1,7 +1,13 @@
 from django.db import models
 from django.contrib.auth import get_user_model
+from datetime import datetime
 
 User = get_user_model()
+
+CHOICES = (
+    ("Buy", "Buy"),
+    ("Sell", "Sell")
+)
 
 
 class Stock(models.Model):
@@ -15,13 +21,17 @@ class Stock(models.Model):
 class Order(models.Model):
     stock_name = models.ForeignKey(Stock, on_delete=models.PROTECT)
     user = models.ForeignKey(User, blank=True, null=True, on_delete=models.SET_NULL, related_name="order")
-    order_type = models.CharField(max_length=255)
+    order_type = models.CharField(max_length=4, choices=CHOICES)
     price = models.PositiveIntegerField(default=0)
     quantity = models.PositiveIntegerField(default=0)
     is_active = models.BooleanField(default=True)
+    time = models.DateTimeField(default=datetime.now())
 
     def __str__(self):
-        return f"{self.stock_name} {self.order_type}"
+        return f"{self.stock_name} {self.order_type} {self.user} {self.is_active}"
+
+    class Meta:
+        ordering = ("time",)
 
 
 class Inventory(models.Model):

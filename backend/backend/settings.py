@@ -78,8 +78,8 @@ CELERY_TASK_TIME_LIMIT = 30 * 60
 CELERY_ALWAYS_EAGER = True
 CELERY_BEAT_SCHEDULE = {
     'task_name': {
-        'task': 'stocks.tasks.print_message',
-        'schedule': 2.0,
+        'task': 'stocks.tasks.search_active_deals',
+        'schedule': 5.0,
     },
 }
 

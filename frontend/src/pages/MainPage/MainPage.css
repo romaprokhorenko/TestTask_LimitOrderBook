@@ -4,3 +4,9 @@
     display: flex;
     margin-bottom: 30px;
 }
+.order{
+    width: 100%;
+    justify-content: space-evenly;
+    display: flex;
+    margin-bottom: 30px;
+}

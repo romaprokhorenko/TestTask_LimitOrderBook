@@ -1,5 +1,4 @@
 import React, {useEffect, useState} from "react";
-import { NavLink } from 'react-router-dom'
 import "./Transactions.css"
 import axios from "axios";
 import { ITransactions } from "../../models/models";
@@ -15,12 +14,12 @@ export const TransactionsPage: React.FC = ({}) => {
     return (
         <>
         {transactions.map(transaction => 
-            <div className="" key={transaction.id}>
-                <li>{transaction.stock_name.name}</li>
-                <li>{transaction.buyer.username}</li>
-                <li>{transaction.seller.username}</li>
-                <li>{transaction.price}</li>
-                <li>{transaction.quantity}</li>
+            <div className="transaction" key={transaction.id}>
+                <div className="">{transaction.stock_name.name}</div>
+                <div className="">{transaction.buyer.username}</div>
+                <div className="">{transaction.seller.username}</div>
+                <div className="">{transaction.price}</div>
+                <div className="">{transaction.quantity}</div>
             </div>
         )}
         </>

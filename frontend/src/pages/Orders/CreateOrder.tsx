@@ -1,8 +1,7 @@
 import axios from "axios";
 import { error } from "console";
 import React from "react";
-import { NavLink } from 'react-router-dom'
-// import "./Orders.css"
+import "./Orders.css"
 
 export const CreateOrderPage: React.FC = ({}) => {
     const createOrder = () =>
@@ -28,11 +27,16 @@ export const CreateOrderPage: React.FC = ({}) => {
     }
     return (
         <>
+        <label htmlFor="">Stock name</label>
         <input type="text" id="stock_name"/>
-        <input type="text" id="order_type"/>
-        <input type="text" id="price"/>
-        <input type="text" id="quantity"/>
-        <input type="button" value="" onClick={createOrder} />
+        <br />
+        <label htmlFor="">Order type</label>
+        <input type="text" id="order_type"/><br />
+        <label htmlFor="">Price</label>
+        <input type="text" id="price"/><br />
+        <label htmlFor="">Quantity</label>
+        <input type="text" id="quantity"/><br />
+        <button onClick={createOrder}>Create</button>
         </>
     )
 }

@@ -12,7 +12,7 @@ export const LoginPage: React.FC = ({}) => {
         <>
         <label htmlFor="">Username</label>
         <input type="text" id="username"/>
-        <input type="button" value="" onClick={loginByUsername}/>
+        <button onClick={loginByUsername}>Log in</button>
         </>
     )
 }

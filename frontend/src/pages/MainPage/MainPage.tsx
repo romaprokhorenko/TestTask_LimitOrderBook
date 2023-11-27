@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from "react";
 import { NavLink } from 'react-router-dom'
-// import "./MainPage.css"
+import "./MainPage.css"
 import axios from "axios";
 import {IOrders} from "../../models/models"
 
@@ -17,12 +17,12 @@ export const MainPage: React.FC = ({}) => {
     
     return(<>
         {orders.map(order => 
-            <div className="" key={order.id}>
-            <li>{order.stock_name.name}</li>
-            <li>{order.order_type}</li> 
-            <li>{order.price}</li>
-            <li>{order.quantity}</li>
-            <li>{order.time}</li>
+            <div className="order" key={order.id}>
+            <div className="">{order.stock_name.name}</div>
+            <div className="">{order.order_type}</div>
+            <div className="">{order.price}</div>
+            <div className="">{order.quantity}</div>
+            <div className="">{order.time}</div>
             </div>
             )}
     </>

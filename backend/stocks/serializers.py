@@ -29,6 +29,7 @@ class OrdersSerializer(serializers.ModelSerializer):
     class Meta:
         model = Order
         fields = (
+            "id",
             "stock_name",
             "order_type",
             "price",
@@ -40,7 +41,7 @@ class OrdersSerializer(serializers.ModelSerializer):
 class OrdersCreateSerializer(serializers.ModelSerializer):
     # stock_name = StocksSerializer()
     stock_name = serializers.CharField()
-    username = serializers.IntegerField()
+    username = serializers.CharField()
 
     class Meta:
         model = Order
@@ -55,10 +56,13 @@ class OrdersCreateSerializer(serializers.ModelSerializer):
 
 class TransactionsSerializer(serializers.ModelSerializer):
     stock_name = StocksSerializer()
+    buyer = UsersSerializer()
+    seller = UsersSerializer()
 
     class Meta:
         model = Transaction
         fields = (
+            "id",
             "stock_name",
             "buyer",
             "seller",

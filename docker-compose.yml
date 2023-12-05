@@ -1,0 +1,26 @@
+version: "3.1"
+
+services:
+  backend:
+    build: ./backend
+    restart: always
+    command: python manage.py runserver 0.0.0.0:8000
+    container_name: limitorderbook
+    volumes:
+      - ./backend/:/usr/src/app/
+#    depends_on:
+#      - db
+    ports:
+      - 8000:8000
+
+#  db:
+#    image: postgres
+#    restart: always
+#    container_name: limitorderbookdb
+#    environment:
+#      POSTGRES_PASSWORD: example
+#
+#  frontend:
+#    build: ./frontend
+#    restart: always
+#    container_name: limitorderbookfront

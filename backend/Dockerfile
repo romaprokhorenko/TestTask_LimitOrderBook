@@ -1,7 +1,7 @@
-FROM python:3.8
+FROM python:3.10
 
 # set work directory
-WORKDIR /usr/src/app
+WORKDIR /backend
 
 # set environment variables
 ENV PYTHONDONTWRITEBYTECODE 1

@@ -4,10 +4,10 @@ services:
   backend:
     build: ./backend
     restart: always
-    command: python manage.py runserver 0.0.0.0:8000
-    container_name: limitorderbook
+    command: sh -c "python manage.py runserver 0.0.0.0:8000 && celery -A backend worker --beat -l info"
+    container_name: backend
     volumes:
-      - ./backend/:/usr/src/app/
+      - ./backend/:/backend/
 #    depends_on:
 #      - db
     ports:
@@ -19,8 +19,27 @@ services:
 #    container_name: limitorderbookdb
 #    environment:
 #      POSTGRES_PASSWORD: example
-#
-#  frontend:
-#    build: ./frontend
-#    restart: always
-#    container_name: limitorderbookfront
+
+  redis:
+    image: redis:5.0.1-alpine
+    container_name: redis
+    restart: unless-stopped
+    expose:
+      - 6379
+
+  celery:
+    build: ./backend
+    container_name: celery
+    restart: unless-stopped
+    command: celery -A backend worker --beat -l INFO
+    environment:
+      CELERY_BROKER_URL: "redis://redis:6379"
+      CELERY_RESULT_BACKEND: "redis://redis:6379"
+
+  frontend:
+    build: ./frontend
+    restart: always
+    container_name: frontend
+    command: npm start
+    ports:
+      - 3000:3000

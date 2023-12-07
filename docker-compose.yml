@@ -4,7 +4,7 @@ services:
   backend:
     build: ./backend
     restart: always
-    command: sh -c "python manage.py runserver 0.0.0.0:8000 && celery -A backend worker --beat -l info"
+    command: python manage.py runserver 0.0.0.0:8000
     container_name: backend
     volumes:
       - ./backend/:/backend/
@@ -16,9 +16,12 @@ services:
 #  db:
 #    image: postgres
 #    restart: always
-#    container_name: limitorderbookdb
+#    container_name: postgresql
 #    environment:
-#      POSTGRES_PASSWORD: example
+#      POSTGRES_USER: test_task_user
+#      POSTGRES_PASSWORD: dbpass
+#    ports:
+#      - 5432:5432
 
   redis:
     image: redis:5.0.1-alpine

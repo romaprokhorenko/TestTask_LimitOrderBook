@@ -1,29 +1,34 @@
-import React, { useEffect, useState } from "react";
-import "./Transactions.css";
+import React, {useEffect, useState} from "react";
+import "./StyledTransactions";
 import axios from "axios";
-import { ITransactions } from "../../models/models";
+import {ITransactions} from "../../models/models";
+import {observer} from "mobx-react-lite";
+import {StyledTransaction} from "./StyledTransactions";
 
-export const TransactionsPage: React.FC = ({}) => {
-  const url = `http://127.0.0.1:8000/stocks/get_order/get_my_transactions/?username=${localStorage.getItem(
-    "username",
-  )}`;
-  const [transactions, setTransactions] = useState<ITransactions[]>([]);
-  useEffect(() => {
-    axios.get<ITransactions[]>(url).then((response) => {
-      setTransactions(response.data);
+export const TransactionsPage: React.FC = observer(() => {
+    const url = `http://127.0.0.1:8000/stocks/get_order/get_my_transactions/?username=${localStorage.getItem(
+        "username",
+    )}`;
+    const [transactions, setTransactions] = useState<ITransactions[]>([]);
+    useEffect(() => {
+        axios.get<ITransactions[]>(url).then((response) => {
+            setTransactions(response.data);
+        });
     });
-  });
-  return (
-    <>
-      {transactions.map((transaction) => (
-        <div className="transaction" key={transaction.id}>
-          <div className="">{transaction.stock_name.name}</div>
-          <div className="">{transaction.buyer.username}</div>
-          <div className="">{transaction.seller.username}</div>
-          <div className="">{transaction.price}</div>
-          <div className="">{transaction.quantity}</div>
-        </div>
-      ))}
-    </>
-  );
-};
+
+    return (
+        <>
+            {transactions.map((transaction) => (
+                    <StyledTransaction key={transaction.id}>
+                        <div className="">{transaction.stock_name.name}</div>
+                        <div className="">{transaction.buyer.username}</div>
+                        <div className="">{transaction.seller.username}</div>
+                        <div className="">{transaction.price}</div>
+                        <div className="">{transaction.quantity}</div>
+                    </StyledTransaction>
+                )
+            )}
+        </>
+    )
+        ;
+});

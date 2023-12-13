@@ -1,6 +1,5 @@
 import axios from "axios";
 import React from "react";
-import "./Orders.css";
 
 export const CreateOrderPage: React.FC = ({}) => {
   const createOrder = () => {

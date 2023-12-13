@@ -1,26 +1,24 @@
 import React from "react";
 import {NavLink} from "react-router-dom";
-import {StyledHeader} from "./StyledMainPage";
+import {StyledHeader, StyledLabelName, StyledNavigateItem} from "./StyledMainPage";
 
 export const Header: React.FC = ({}) => {
     return (
         <>
             <StyledHeader>
-                <NavLink to={"/main"}>
-                    <div className="link">Main</div>
-                </NavLink>
-                <NavLink to={"/myorder"}>
-                    <div className="link">My orders</div>
-                </NavLink>
-                <NavLink to={"/transactions"}>
-                    <div className="link">My transactions</div>
-                </NavLink>
-                <NavLink to={"/create"}>
-                    <div className="link">Create Order</div>
-                </NavLink>
-                <NavLink to={"/login"}>
-                    <div className="link">Profile</div>
-                </NavLink>
+                <StyledLabelName>Сервисы</StyledLabelName>
+                <StyledNavigateItem $pad={4}><NavLink to={"/main"}>Главная страница</NavLink></StyledNavigateItem>
+                <StyledNavigateItem><NavLink to={"/myorder"}>Мои заказы</NavLink></StyledNavigateItem>
+                <StyledNavigateItem><NavLink to={"/transactions"}>Мои транзакции</NavLink></StyledNavigateItem>
+                <StyledNavigateItem><NavLink to={"/create"}>Создать заказ</NavLink></StyledNavigateItem>
+                <StyledNavigateItem><NavLink to={"/login"}>Профиль</NavLink></StyledNavigateItem><br/>
+
+                <StyledLabelName>Контакты</StyledLabelName>
+                <StyledNavigateItem><NavLink to={"/main"}>Главная страница</NavLink></StyledNavigateItem>
+                <StyledNavigateItem><NavLink to={"/myorder"}>Мои заказы</NavLink></StyledNavigateItem>
+                <StyledNavigateItem><NavLink to={"/transactions"}>Мои транзакции</NavLink></StyledNavigateItem>
+                <StyledNavigateItem><NavLink to={"/create"}>Создать заказ</NavLink></StyledNavigateItem>
+                <StyledNavigateItem><NavLink to={"/login"}>Профиль</NavLink></StyledNavigateItem>
             </StyledHeader>
         </>
     );

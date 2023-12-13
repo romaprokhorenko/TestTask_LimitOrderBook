@@ -1,4 +1,9 @@
-.content {
-  width: 70%;
-  padding: 30px 15% 30px 15%;
+.App{
+  display: grid;
+  grid-template-columns: 20% 70% 10%;
+  background-color: #f7f7f7;
+}
+a {
+  text-decoration: none;
+  color: #000000;
 }

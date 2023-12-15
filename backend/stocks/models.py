@@ -1,6 +1,7 @@
+import datetime
+
 from django.db import models
 from django.contrib.auth import get_user_model
-from datetime import datetime
 
 User = get_user_model()
 
@@ -25,7 +26,7 @@ class Order(models.Model):
     price = models.PositiveIntegerField(default=0)
     quantity = models.PositiveIntegerField(default=0)
     is_active = models.BooleanField(default=True)
-    time = models.DateTimeField(default=datetime.now())
+    time = models.DateField(default=datetime.datetime.today())
 
     def __str__(self):
         return f"{self.stock_name} {self.order_type} {self.user} {self.is_active}"

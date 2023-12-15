@@ -5,13 +5,16 @@ import {StyledHeader, StyledLabelName, StyledNavigateItem} from "./StyledMainPag
 export const Header: React.FC = ({}) => {
     return (
         <>
-            <StyledHeader>
+            <StyledHeader id={"header"}>
                 <StyledLabelName>Сервисы</StyledLabelName>
-                <StyledNavigateItem $pad={4}><NavLink to={"/main"}>Главная страница</NavLink></StyledNavigateItem>
-                <StyledNavigateItem><NavLink to={"/myorder"}>Мои заказы</NavLink></StyledNavigateItem>
-                <StyledNavigateItem><NavLink to={"/transactions"}>Мои транзакции</NavLink></StyledNavigateItem>
-                <StyledNavigateItem><NavLink to={"/create"}>Создать заказ</NavLink></StyledNavigateItem>
-                <StyledNavigateItem><NavLink to={"/login"}>Профиль</NavLink></StyledNavigateItem><br/>
+                <StyledNavigateItem $logged={true}><NavLink to={"/main"}>Главная</NavLink></StyledNavigateItem>
+                <StyledNavigateItem $logged={!!localStorage.getItem("username")}><NavLink to={"/myorder"}>Мои
+                    сделки</NavLink></StyledNavigateItem>
+                <StyledNavigateItem $logged={!!localStorage.getItem("username")}><NavLink to={"/transactions"}>Мои
+                    транзакции</NavLink></StyledNavigateItem>
+                <StyledNavigateItem $logged={!!localStorage.getItem("username")}><NavLink to={"/create"}>Создать
+                    сделку</NavLink></StyledNavigateItem>
+                <StyledNavigateItem $logged={true}><NavLink to={"/login"}>Профиль</NavLink></StyledNavigateItem><br/>
 
                 <StyledLabelName>Контакты</StyledLabelName>
                 <StyledNavigateItem><NavLink to={"/main"}>Главная страница</NavLink></StyledNavigateItem>

@@ -3,7 +3,7 @@ import "./StyledTransactions";
 import axios from "axios";
 import {ITransactions} from "../../models/models";
 import {observer} from "mobx-react-lite";
-import {StyledColumn, StyledRow, StyledTable} from "./StyledTransactions";
+import {TableComponent} from "../../components/Table";
 
 export const TransactionsPage: React.FC = observer(() => {
     const url = `http://127.0.0.1:8000/stocks/get_order/get_my_transactions/?username=${localStorage.getItem(
@@ -18,34 +18,7 @@ export const TransactionsPage: React.FC = observer(() => {
 
     return (
         <>
-            <StyledTable>
-                <StyledRow $side={"top"} $count={5}>
-                    <StyledColumn>Акция</StyledColumn>
-                    <StyledColumn>Покупатель</StyledColumn>
-                    <StyledColumn>Продавец</StyledColumn>
-                    <StyledColumn>Цена</StyledColumn>
-                    <StyledColumn>Количество</StyledColumn>
-                </StyledRow>
-
-                {transactions.map((transaction) => (
-                        <StyledRow $count={5} key={transaction.id}>
-                            <StyledColumn>{transaction.stock_name.name}</StyledColumn>
-                            <StyledColumn>{transaction.buyer.username}</StyledColumn>
-                            <StyledColumn>{transaction.seller.username}</StyledColumn>
-                            <StyledColumn>{transaction.price}</StyledColumn>
-                            <StyledColumn>{transaction.quantity}</StyledColumn>
-                        </StyledRow>
-                    )
-                )}
-
-                <StyledRow $side={"bottom"} $count={5}>
-                    <StyledColumn>Акция</StyledColumn>
-                    <StyledColumn>Покупатель</StyledColumn>
-                    <StyledColumn>Продавец</StyledColumn>
-                    <StyledColumn>Цена</StyledColumn>
-                    <StyledColumn>Количество</StyledColumn>
-                </StyledRow>
-            </StyledTable>
+            <TableComponent titles={["Акция", "Покупатель", "Продавец", "Цена", "Количество"]} data={transactions}/>
         </>
     )
         ;

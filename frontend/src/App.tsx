@@ -10,6 +10,8 @@ import {TransactionsPage} from "./pages/Transactions/Transactions";
 import {Header} from "./pages/MainPage/Header";
 import styled from "styled-components";
 import {Footer} from "./pages/Footer/Footer";
+import {LiftToTopComponent} from "./components/LiftToTop";
+import {RegistrationPage} from "./pages/User/Registration";
 
 const StyledContent = styled.div`
     padding: 10%;
@@ -21,6 +23,7 @@ function App() {
         <div className="App">
             <StyledVoid>
                 <Header/>
+                <LiftToTopComponent />
             </StyledVoid>
             <StyledContent>
                 <Routes>
@@ -30,6 +33,7 @@ function App() {
                     <Route path="/transactions" element={<TransactionsPage/>}/>
                     <Route path="/create" element={<CreateOrderPage/>}/>
                     <Route path="/login" element={<LoginPage/>}/>
+                    <Route path="/registration" element={<RegistrationPage/>}/>
                 </Routes>
             </StyledContent>
             <StyledVoid/>

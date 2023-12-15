@@ -1,29 +1,51 @@
-import React, {useState, useEffect} from "react";
-import axios from "axios";
-import {IOrders} from "../../models/models";
-import {StyledOrder} from "./StyledMainPage";
+import React from "react";
+import {
+    StyledDate,
+    StyledNewsCard,
+    StyledNewsLabel, StyledNewsLabelWrapper, StyledNewsList,
+    StyledNewsText,
+    StyledNewsWriter
+} from "./StyledMainPage";
+import {NavLink} from "react-router-dom";
 
 export const MainPage: React.FC = ({}) => {
-    const [orders, setOrders] = useState<IOrders[]>([]);
-    const url = "http://127.0.0.1:8000/stocks/get_order/";
-    useEffect(() => {
-        axios.get<IOrders[]>(url).then((response) => {
-            setOrders(response.data);
-        });
-    }, []);
     return (
         <>
-            {orders.map((order) => (
-                    <StyledOrder key={order.id}>
-                        <div className="">{order.stock_name.name}</div>
-                        <div className="">{order.order_type}</div>
-                        <div className="">{order.price}</div>
-                        <div className="">{order.quantity}</div>
-                        <div className="">{order.time}</div>
-                    </StyledOrder>
-                )
-            )}
+            <StyledNewsList>
+                <NavLink to={"#"}>
+                    <StyledNewsCard>
+                        <StyledNewsLabelWrapper>
+                            <StyledNewsLabel>10 признаков машенников в интернете</StyledNewsLabel>
+                            <StyledNewsWriter>
+                                <img src={"./img.png"}/> Юрка Юрок <StyledDate>15.06.2023</StyledDate>
+                            </StyledNewsWriter>
+                        </StyledNewsLabelWrapper>
+                        <StyledNewsText>
+                            Как я борюсь со страхом нарушения работы сердца Как я борюсь со страхом нарушения работы
+                            сердца
+                            Как я борюсь со страхом нарушения работы сердца
+                        </StyledNewsText>
+                    </StyledNewsCard>
+                </NavLink>
+
+                <NavLink to={"#"}>
+                    <StyledNewsCard>
+                        <StyledNewsLabelWrapper>
+                            <StyledNewsLabel>10 признаков машенников в интернете</StyledNewsLabel>
+                            <StyledNewsWriter>
+                                <img src={"./img.png"}/> Юрка Юрок <StyledDate>15.06.2023</StyledDate>
+                            </StyledNewsWriter>
+                        </StyledNewsLabelWrapper>
+                        <StyledNewsText>
+                            Как я борюсь со страхом нарушения работы сердца Как я борюсь со страхом нарушения работы
+                            сердца
+                            Как я борюсь со страхом нарушения работы сердца
+                        </StyledNewsText>
+                    </StyledNewsCard>
+                </NavLink>
+
+
+            </StyledNewsList>
         </>
-    )
-        ;
+)
 };
